@@ -7,5 +7,6 @@ const router = express.Router();
 router.get("/", itemController.getItems);
 router.post("/", itemController.createItem);
 router.delete("/:id", itemController.deleteItem);
+router.post("/generate",itemController.generateItem);
 
 export default router;

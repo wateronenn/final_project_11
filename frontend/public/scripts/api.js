@@ -31,3 +31,19 @@ export async function deleteItem(id) {
     method: "DELETE",
   });
 }
+
+
+export async function generateItem(level,subject,amount,prompt){
+  const obj = {level:level, subject:subject,amount:amount,prompt:prompt};
+
+  const items = await fetch(`${BACKEND_URL}/generate`,{
+    method:"POST",
+    headers: {
+      "Content-Type" : "application/json",
+    },
+    body: JSON.stringify(obj),
+  }).then(res => res.json());
+
+  return items;
+
+}
