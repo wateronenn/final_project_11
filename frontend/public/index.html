@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>final project demo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <section>
+      <header><h1 id="app-name">final project demo</h1></header>
+    </section>
+
+    <section>
+      <table id="main-table">
+        <thead>
+          <tr>
+            <th>Question - Aanswer</th>
+            <th>Operation</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody id="main-table-body"></tbody>
+
+        <tfoot>
+          <tr id="newrow-form">
+            <td>Question : <input id="question-to-add" type="text" /><br />
+                Answer : <input id="answer-to-add" type="text" />
+            </td>
+            <td><button id="add-newrow">เพิ่ม</button></td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <script type="module" src="scripts/main.js"></script>
+  </body>
+</html>
