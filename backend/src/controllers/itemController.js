@@ -51,6 +51,7 @@ export const deleteItem = async (req, res) => {
 export const generateItem = async (req, res) => {
   try {
     const { level, subject, amount, prompt } = req.body;
+    console.log("Request body:", req.body);
     if (!level || !subject || !amount)
       return res.status(400).json({ message: "Missing Data, Please fill out." });
 

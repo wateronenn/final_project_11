@@ -33,9 +33,9 @@ export async function deleteItem(id) {
 }
 
 
-export async function generateItem(level,subject,amount,prompt){
-  const obj = {level:level, subject:subject,amount:amount,prompt:prompt};
-
+export async function generateItem({level,subject,amount,prompt}){
+  const obj = {level:level, subject:subject, amount:amount, prompt:prompt};
+  console.log(obj);
   const items = await fetch(`${BACKEND_URL}/items/generate`,{
     method:"POST",
     headers: {
