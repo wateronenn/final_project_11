@@ -7,5 +7,5 @@
 
 /** @typedef {Omit<Item, "_id">} ItemPayload */
 
-export const BACKEND_URL = "http://localhost:3222";
+export const BACKEND_URL = "http://3.80.66.248:3222";
 

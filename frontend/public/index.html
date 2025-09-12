@@ -1,44 +1,149 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>final project demo</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard Study Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Flashcard For Study</h1>
+            <p class="subtitle">Study your flashcards and create new ones</p>
+        </div>
 
-  <body>
-    <section>
-      <header><h1 id="app-name">final project demo</h1></header>
-    </section>
+        <!-- Study Mode Section -->
+        <div id="study-section">
+            <div class="flashcard" id="flashcard">
+                <div class="inner">
+                    <div class="front" id="flashcard-front">Question</div>
+                    <div class="back" id="flashcard-back">Answer</div>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="prevBtn">← Previous</button>
+                <button id="flipBtn">↻ Flip</button>
+                <button id="nextBtn">Next →</button>
+            </div>
+            <p id="cardCounter">0 / 0</p>
+        </div>
 
-    <section>
-      <header><h2 id="app-name">Clear Botton</h2></header>
-      <button id="clear-items">Clear</button>
-    </section>
+        <!-- Creation Tools Section -->
+        <div class="creation-section">
+            <!-- Manual Creator -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>
+                        <span class="icon">+</span>
+                        Create Flashcard
+                    </h2>
+                </div>
+                <div class="card-content">
+                    <form id="manualForm" class="form">
+                        <div class="form-group">
+                            <label for="frontInput">Front (Question)</label>
+                            <textarea id="frontInput" placeholder="Enter the question ..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="backInput">Back (Answer)</label>
+                            <textarea id="backInput" placeholder="Enter the answer ..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary full-width"id="add-newrow">Add Card</button>
+                    </form>
+                </div>
+            </div>
 
-    <section>
-      <table id="main-table">
-        <thead>
-          <tr>
-            <th>Question - Aanswer</th>
-            <th>Operation</th>
-            <th></th>
-          </tr>
-        </thead>
+            <!-- AI Generator -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>
+                        <span class="icon">✨</span>
+                        AI Generator
+                    </h2>
+                </div>
+                <div class="card-content">
+                    <form id="aiForm" class="form">
+                        <div class="form-group">
+                            <label for="educationLevel">Education Level</label>
+                            <select id="educationLevel">
+                                <option value="">Select level</option>
+                                <option value="elementary">Elementary School (K-5)</option>
+                                <option value="middle">Middle School (6-8)</option>
+                                <option value="high">High School (9-12)</option>
+                                <option value="undergraduate">Undergraduate</option>
+                                <option value="graduate">Graduate</option>
+                                <option value="professional">Professional/Continuing Education</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject">
+                                <option value="">Select subject</option>
+                                <option value="math">Mathematics</option>
+                                <option value="science">Science</option>
+                                <option value="history">History</option>
+                                <option value="english">English/Language Arts</option>
+                                <option value="geography">Geography</option>
+                                <option value="biology">Biology</option>
+                                <option value="chemistry">Chemistry</option>
+                                <option value="physics">Physics</option>
+                                <option value="literature">Literature</option>
+                                <option value="psychology">Psychology</option>
+                                <option value="economics">Economics</option>
+                                <option value="computer-science">Computer Science</option>
+                                <option value="foreign-language">Foreign Language</option>
+                                <option value="art">Art & Art History</option>
+                                <option value="music">Music</option>
+                                <option value="philosophy">Philosophy</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardCount">Cards: </label>
+                            <input type="number" id="cardCount" min="1" max="100" placeholder="Enter the number of cards...">
+                        </div>
+                        <div class="form-group">
+                            <label for="promptDetails">Details (Optional)</label>
+                            <textarea id="promptDetails" placeholder="Specific topics or difficulty..." rows="3"></textarea>
+                        </div>
+                        <button type="button" class="btn btn-secondary full-width" id="generateBtn">
+                            <span class="icon">✨</span>
+                            Generate
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-        <tbody id="main-table-body"></tbody>
+        <!-- Flashcards List Section -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-header-flex">
+                    <h2>My Flashcards (<span id="cardCountText">0</span>)</h2>
+                    <button class="btn btn-outline btn-sm btn-destructive" id="clear-items" style="display: none;">
+                        <span class="icon">🗑</span>
+                        Clear All
+                    </button>
+                </div>
+            </div>
+            <div class="card-content">
+                <div id="emptyCardList" class="empty-state">
+                    <p>No flashcards yet. Create your first card!</p>
+                </div>
+                <div id="cardGrid" class="card-grid" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
 
-        <tfoot>
-          <tr id="newrow-form">
-            <td>Question : <input id="question-to-add" type="text" /><br />
-                Answer : <input id="answer-to-add" type="text" />
-            </td>
-            <td><button id="add-newrow">เพิ่ม</button></td>
-          </tr>
-        </tfoot>
-      </table>
-    </section>
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="loading-spinner"></div>
+            <p>Generating flashcards...</p>
+        </div>
+    </div>
 
     <script type="module" src="scripts/main.js"></script>
-  </body>
+</body>
 </html>
