@@ -47,3 +47,11 @@ export async function generateItem(level,subject,amount,prompt){
   return items;
 
 }
+
+export async function clearItems(items) {
+  for (const item of items) {
+    await fetch(`${BACKEND_URL}/items/${item._id}`, {
+    method: "DELETE",
+    }); 
+  }
+}

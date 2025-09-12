@@ -32,7 +32,7 @@ export const getItems = async (req, res) => {
 export const deleteItem = async (req, res) => {
   try {
     const updated = await Item.findByIdAndDelete(req.params.id, req.body);
-
+    console.log("deleted");
     if (updated) {
       res.status(200).json({ message: "OK" });
     } else {

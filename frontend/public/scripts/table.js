@@ -1,4 +1,4 @@
-import { createItem, deleteItem, getItems } from "./api.js";
+import { createItem, deleteItem, getItems,clearItems } from "./api.js";
 
 /** @typedef {import("./config.js").Item} Item */
 /** @typedef {import("./config.js").ItemPayload} ItemPayload */
@@ -59,4 +59,11 @@ export async function handleCreateItem() {
 
   questionToAdd.value = "";
   answerToAdd.value = "";
+}
+
+export async function handleClearItems() {
+  const items = await getItems();
+  await clearItems(items);
+  await fetchAndDrawTable();
+
 }
