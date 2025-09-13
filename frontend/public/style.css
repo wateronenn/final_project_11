@@ -1,4 +1,6 @@
 /* CSS Variables */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
@@ -28,7 +30,7 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-  background-color: var(--background);
+  background: linear-gradient(to bottom, #1f8ad1 0%, #91aecf 50%, #e6edf3 100%);
   color: var(--foreground);
   line-height: 1.5;
   min-height: 100vh;
@@ -131,15 +133,26 @@ h2 {
   margin-bottom: 2rem;
 }
 
-.flashcard-front,
-.flashcard-back {
+.flashcard .inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.flashcard.flipped .inner {
+  transform: rotateY(180deg);
+}
+
+
+.front,
+.back {
   position: absolute;
   width: 100%;
   height: 100%;
   min-height: 18.75rem;
   backface-visibility: hidden;
-  transition: transform 0.3s ease;
-  background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2rem;
@@ -151,17 +164,17 @@ h2 {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.flashcard-back {
+
+.front {
+  background: #fff; 
+  z-index: 2;
+}
+
+.back {
+  background: var(--card);
   transform: rotateY(180deg);
 }
 
-.flashcard.flipped .flashcard-front {
-  transform: rotateY(-180deg);
-}
-
-.flashcard.flipped .flashcard-back {
-  transform: rotateY(0deg);
-}
 
 .card-type {
   color: var(--muted-foreground);

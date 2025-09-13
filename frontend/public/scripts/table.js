@@ -63,7 +63,7 @@ export function handleNext() {
     //console.log(currentIndex);
     document.getElementById("flashcard").classList.remove("flipped");
     setTimeout(() => {
-      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      currentIndex = (currentIndex +1) % items.length;
       renderFlashcard();
     }, 150);
   }
@@ -77,8 +77,19 @@ export function handlePrev() {
     }, 150);
   }
 }
-export function handleFlip() {
-  document.getElementById("flashcard").classList.toggle("flipped");
+export function handleShuf() {
+  if (items.length > 1) {
+    flashcard.classList.remove("flipped");
+    setTimeout(() => {
+      let randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * items.length);
+      } while (randomIndex === currentIndex);
+      currentIndex = randomIndex;
+      renderFlashcard();
+    }, 150);
+  }
+
 }
 
 /**
