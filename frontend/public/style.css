@@ -105,6 +105,7 @@ body {
   text-align: center;
   backface-visibility: hidden;
   transform-style: preserve-3d;
+  color: #0a0a0a;
 }
 
 .flashcard .back {
