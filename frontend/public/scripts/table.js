@@ -58,34 +58,63 @@ function renderFlashcard() {
   back.style.backgroundColor = darkerColor;
 
 }
-/*
-function drawTable(items) {
-  /** @type {HTMLTableSectionElement} 
-  const table = document.getElementById("main-table-body");
 
-  // Clear all elements
-  table.innerHTML = "";
+export function renderCardList() {
+  const emptyState = document.getElementById("emptyCardList");
+  const cardList = document.getElementById("cardList");
+  const cardCountText = document.getElementById("cardCountText");
+  const clearButton = document.getElementById("clear-items");
 
-  for (const item of items) {
-    const row = table.insertRow();
+  cardList.innerHTML = "";
 
-    // put question + answer into the same cell
-    const qaCell = row.insertCell();
-    qaCell.innerText = `${item.question}\n${item.answer}`;
-    qaCell.style.whiteSpace = "pre-line";
-
-    const button = document.createElement("button");
-    button.addEventListener("click", () => handleDelete(item._id));
-    button.innerText = "ลบ";
-
-    row.insertCell().appendChild(button);
+  if (!items || items.length === 0) {
+    emptyState.style.display = "block";
+    cardList.style.display = "none";
+    cardCountText.innerText = "0";
+    clearButton.style.display = "none";
+    return;
   }
-}*/
+
+  emptyState.style.display = "none";
+  cardList.style.display = "flex";
+  cardCountText.innerText = items.length.toString();
+  clearButton.style.display = "inline-flex";
+
+  items.forEach((item, index) => {
+    const cardDiv = document.createElement("div");
+    cardDiv.className = "card-item";
+
+    const questionDiv = document.createElement("div");
+    questionDiv.className = "card-question";
+    questionDiv.innerText = `${index + 1}. Q: ${item.question}`;
+
+    const answerDiv = document.createElement("div");
+    answerDiv.className = "card-answer";
+
+    const answerText = document.createElement("span");
+    answerText.innerText = `A: ${item.answer}`;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "card-delete";
+    deleteBtn.innerText = "ลบ";
+    deleteBtn.addEventListener("click", () => handleDelete(item._id));
+
+    answerDiv.appendChild(answerText);
+    answerDiv.appendChild(deleteBtn);
+
+    cardDiv.appendChild(questionDiv);
+    cardDiv.appendChild(answerDiv);
+
+    cardList.appendChild(cardDiv);
+  });
+}
+
 
 export async function fetchAndDrawTable() {
   items = await getItems();
   currentIndex = 0;
   renderFlashcard();
+  renderCardList();
 }
 
 export function handleNext() {

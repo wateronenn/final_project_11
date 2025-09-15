@@ -300,3 +300,57 @@ select:focus {
     width: 80%;
   }
 }
+
+/* Container ของรายการการ์ด */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* กล่องการ์ดแต่ละใบ */
+.card-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  background: #f9f9f9;
+}
+
+/* ข้อคำถาม (บรรทัดบน) */
+.card-question {
+  font-weight: bold;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+/* บรรทัดคำตอบ + ปุ่มลบ */
+.card-answer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ข้อคำตอบชิดซ้าย */
+.card-answer span {
+  flex-grow: 1;
+  text-align: left;
+}
+
+/* ปุ่มลบ */
+.card-delete {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.card-delete:hover {
+  background: #c0392b;
+}
+
