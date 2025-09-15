@@ -61,9 +61,9 @@ export const generateItem = async (req, res) => {
     const response = await fetch(`${process.env.OLLAMA_URL}/api/generate`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ model: "llama3", prompt: userprompt }),
+      body: JSON.stringify({ model: "llama2:7b", prompt: userprompt }),
     });
-
+    console.log(response);
     const text = await response.text();
     const lines = text.split("\n").filter((line) => line.trim() !== "");
 
